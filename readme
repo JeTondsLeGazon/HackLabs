@@ -1,0 +1,7 @@
+# Hacking Labs
+
+Always wanted to be a black hat hacker while remaining a good guy? These labs are for you!
+
+For each of those (only 1 for now), you are going to be the bad guy who has to hack for his own interest. Don't panic! None of this is real and only serves to challenge your hacking skills through some "real life" scenarios.
+
+Just follow the instructions (and associated lore) in each `readme`. You only need docker compose installed (and your hacking tools of course).

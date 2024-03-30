@@ -1,0 +1,36 @@
+!! WIP!! 
+
+# Hindrance for Insurance
+
+Think the medical insurances are too expansive ? They take advantage of people's health? Perfect, this one is for you!
+
+
+## Your back story
+
+Your are Hugh Jackedman, a fitness coach of 32 years old with a passion for software development and hacking. On a peaceful saturday, you sit on the couch at your parents' place.
+
+Your mum, Kelly, just came back from a medical exam, she was not feeling well these past weeks. Verdict: a brain tumor has been found and is growing fast ... 
+
+Fortunately, a medical surgery, if performed within a few weeks, should be able to remove it. The remission probability following that intervention is comforting! Good news then!
+
+Only ... this will cost a lost of money and your insurance has denied the costs coverage. These pesky a**holes!! How could they?
+
+Unlucky for them, you are a seasoned hacker and quite determined to save your mum. You are going to hack them and change the document which testifies she does not qualify for the reimbusment.
+
+## Relevant information
+
+- Insurance company: **GoldenPotCorp**
+- Website: `goldenpotcorp.lab`
+- Mum's name: Kelly Jackedman
+
+### Goal
+
+Find where in the company's system the money request has been denied and change it.
+
+### Setup
+- Make sure you have docker-compose installed
+- Dont' look at the compose files! They could contain credentials and spoil the fun.
+- Just run `deploy.sh` in this repo to deploy the target system on the IP addresses specified at the top on the file. If necessary, change the range to accomodate.
+- You have to change your `hosts` file with the IP address given back once `deploy.sh` has been run and add:
+`<IP> goldenpotcorp.lab`
+- Then simply begin the fun!
