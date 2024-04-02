@@ -1,41 +1,33 @@
 version: "3.8"
 
 networks:
-    world-company-network:
+    goldenpot:
       ipam:
         config:
           - subnet: 172.18.0.0/16
 
 
 services:
-  wordpress:
+  website:
       build:
-          context: wordpress
-      restart: always
+          context: ./website
       ports:
         - 80:80
-      environment:
-        WORDPRESS_DB_HOST: db
-        WORDPRESS_DB_USER: exampleuser
-        WORDPRESS_DB_PASSWORD: examplepass
-        WORDPRESS_DB_NAME: exampledb
       networks:
-        world-company-network:
+        goldenpot:
           ipv4_address: 172.18.0.2
-
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
+  
+  setup_test:
+    build:
+      context: ./setup
     networks:
-        world-company-network:
-          ipv4_address: 172.18.0.3
+      goldenpot:
+        ipv4_address: 172.18.0.3
 
-volumes:
-  db:
+  goldenpot:
+    build:
+      context: ./users
+    ports:
+      - 22:22
+    networks:
+      ipv4_address: 172.18.0.4
