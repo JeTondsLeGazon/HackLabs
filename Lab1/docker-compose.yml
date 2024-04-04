@@ -1,7 +1,7 @@
 version: "3.8"
 
 networks:
-    goldenpot:
+    goldenpot_lan:
       ipam:
         config:
           - subnet: 172.18.0.0/16
@@ -14,14 +14,14 @@ services:
       ports:
         - 80:80
       networks:
-        goldenpot:
+        goldenpot_lan:
           ipv4_address: 172.18.0.2
   
   setup_test:
     build:
       context: ./setup
     networks:
-      goldenpot:
+      goldenpot_lan:
         ipv4_address: 172.18.0.3
 
   goldenpot:
@@ -30,4 +30,5 @@ services:
     ports:
       - 22:22
     networks:
-      ipv4_address: 172.18.0.4
+      goldenpot_lan:
+        ipv4_address: 172.18.0.4
