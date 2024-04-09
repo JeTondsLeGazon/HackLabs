@@ -1,6 +1,8 @@
 FROM python:3.10-slim-bookworm
 
-COPY . /code
+COPY main.py /code/
+COPY interns/ /home/administration/interns
+COPY intern_first_day.txt /home/administration
 WORKDIR /code
 RUN pip install fastapi uvicorn pydantic
 

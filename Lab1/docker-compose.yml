@@ -4,7 +4,7 @@ networks:
     goldenpot_lan:
       ipam:
         config:
-          - subnet: 172.18.0.0/16
+          - subnet: 172.18.0.0/8
 
 
 services:
@@ -32,3 +32,14 @@ services:
     networks:
       goldenpot_lan:
         ipv4_address: 172.18.0.4
+
+  db:
+    build:
+      context: ./db
+    expose:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      goldenpot_lan:
+        ipv4_address: 172.18.0.5
