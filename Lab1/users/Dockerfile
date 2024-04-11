@@ -1,11 +1,11 @@
 FROM ubuntu:18.04
-#ARG TZ=Etc/UTC
+
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y openssh-server
+RUN apt-get update && apt-get install -y openssh-server mysql-server
 RUN mkdir /var/run/sshd
 # Set root password for SSH access (change 'your_password' to your desired password)
 RUN echo 'root:extremelyLongPasswordNotSupposedToBeDiscovered' | chpasswd
-RUN useradd -m "intern"
+RUN useradd -m "randretti"
 RUN useradd -m "jsmith"
 RUN echo 'randretti:anPK02#!lv3rqxh' | chpasswd
 RUN echo 'jsmith:flaquita' | chpasswd
