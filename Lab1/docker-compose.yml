@@ -1,27 +1,40 @@
 version: "3.8"
 
 networks:
-    goldenpot_lan:
-      ipam:
-        config:
-          - subnet: 172.18.0.0/28
+  goldenpot_lan:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/26
 
 services:
   website:
-      build:
-          context: ./website
-      ports:
-        - 80:80
-      networks:
-        goldenpot_lan:
-          ipv4_address: 172.18.0.2
-  
+    build:
+        context: ./website
+    ports:
+      - 80:80
+    networks:
+      goldenpot_lan:
+        ipv4_address: 172.18.0.10
+    depends_on:
+      setup_test:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -O /dev/null http://localhost || exit 1"]
+      timeout: 3s
+      retries: 3
+      interval: 5s
+
   setup_test:
     build:
       context: ./setup
     networks:
       goldenpot_lan:
         ipv4_address: 172.18.0.3
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost/healthz"]
+      timeout: 3s
+      retries: 3
+      interval: 5s
 
   goldenpot:
     build:
@@ -30,17 +43,23 @@ services:
       - 22:22
     networks:
       goldenpot_lan:
-        ipv4_address: 172.18.0.4
-
+        ipv4_address: 172.18.0.11
+    depends_on:
+      db:
+        condition: service_healthy
+  
   db:
     build:
       context: ./db
     expose:
       - 3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=jsmith
-      - MYSQL_PASSWORD=flaquita
+    env_file:
+      - ./db/creds.env
     networks:
       goldenpot_lan:
-        ipv4_address: 172.18.0.5
+        ipv4_address: 172.18.0.2
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 3s
+      retries: 3
+      interval: 5s
