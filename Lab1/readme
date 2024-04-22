@@ -1,5 +1,3 @@
-!! WIP!! 
-
 # Hindrance for Insurance
 
 Think the medical insurances are too expansive ? They take advantage of people's health? Perfect, this one is for you!
@@ -22,15 +20,30 @@ Unlucky for them, you are a seasoned hacker and quite determined to save your mu
 - Insurance company: **GoldenPotCorp**
 - Website: `goldenpotcorp.lab`
 - Mum's name: Kelly Jackedman
+- Allowed IP range: 172.18.0.10/31
 
 ### Goal
 
 Find where in the company's system the money request has been denied and change it.
+Once done, run `bash test.sh` and you should see `PASSED`.
 
 ### Setup
 - Make sure you have docker-compose installed
-- Dont' look at the compose files! They could contain credentials and spoil the fun.
-- Just run `deploy.sh` in this repo to deploy the target system on the IP addresses specified at the top on the file. If necessary, change the range to accomodate.
-- You have to change your `hosts` file with the IP address given back once `deploy.sh` has been run and add:
-`<IP> goldenpotcorp.lab`
+- Dont' look at the compose files! They could contain credentials and spoil the fun. Same goes for `creds.env` files and `test.sh`.
+- Just run `bash up.sh` in this repo to deploy the target system on the IP addresses specified above. Do not try other networks on 172.18.0.1/28 from the host appart from those specified!
 - Then simply begin the fun!
+
+
+---
+SPOILERS AHEAD
+---
+
+### Tools recommended
+In order to complete this, once need:
+- nmap
+- dirbuster
+- ssh
+
+
+### Tips
+- 

@@ -39,6 +39,14 @@ services:
   goldenpot:
     build:
       context: ./users
+      args:
+        - INTERN_NAME
+        - ROOT_PASSWD
+        - USER_NAME
+        - INTERN_PASSWD
+        - USER_PASSWD
+    env_file:
+      - ./users/creds.env
     ports:
       - 22:22
     networks:
@@ -51,6 +59,10 @@ services:
   db:
     build:
       context: ./db
+      args:
+        - MYSQL_ROOT_PASSWORD
+        - MYSQL_USER
+        - MYSQL_PASSWORD
     expose:
       - 3306
     env_file:
@@ -60,6 +72,6 @@ services:
         ipv4_address: 172.18.0.2
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 3s
+      timeout: 5s
       retries: 3
-      interval: 5s
+      interval: 10s
