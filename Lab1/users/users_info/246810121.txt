@@ -1,0 +1,35 @@
+Case Summary: Patient ID - 246810121
+
+Financial Status: Unapproved
+
+Demographics:
+
+    Name: Zachary Price
+    Age: 35
+    Gender: Male
+    Occupation: Software Engineer
+    Marital Status: Single
+
+Medical History:
+
+    Major Depressive Disorder (MDD): Diagnosed 5 years ago, treated with antidepressant medication and psychotherapy.
+    Generalized Anxiety Disorder (GAD): Diagnosed 4 years ago, managed with anxiolytic medication and cognitive-behavioral therapy.
+    Irritable Bowel Syndrome (IBS): Diagnosed 3 years ago, managed with dietary modifications and stress reduction techniques.
+    History of substance abuse: Alcohol misuse in remission for 2 years, no current illicit drug use.
+
+Current Health Status:
+The patient presented with worsening depressive symptoms, including persistent low mood, feelings of hopelessness, and decreased interest in usual activities. He also reported increased anxiety, insomnia, and frequent gastrointestinal symptoms, including abdominal pain and diarrhea. Physical examination revealed no significant abnormalities. Psychiatric evaluation confirmed the exacerbation of MDD and GAD symptoms.
+
+Treatment Plan:
+
+    Optimization of antidepressant therapy for MDD, potentially considering a change in medication or dosage adjustment.
+    Review and adjustment of anxiolytic medication for GAD, with consideration of adjunctive therapies such as mindfulness-based stress reduction.
+    Referral to a gastroenterologist for further evaluation and management of IBS symptoms, including possible pharmacological interventions.
+    Psychotherapy sessions focusing on cognitive restructuring and coping skills development to manage depressive and anxiety symptoms.
+    Regular monitoring of substance use history and reinforcement of relapse prevention strategies.
+
+Prognosis:
+The patient's prognosis is fair with appropriate treatment and ongoing support. However, the presence of multiple psychiatric and gastrointestinal comorbidities requires comprehensive management to achieve symptom remission and improve quality of life.
+
+Care Coordination:
+Close collaboration between psychiatry, gastroenterology, and therapy services is essential to address the patient's complex medical and mental health needs. Regular follow-up appointments with a multidisciplinary team will be scheduled to monitor treatment response, provide ongoing support, and prevent relapse. Additionally, community resources for mental health support groups and substance abuse counseling may be recommended to enhance the patient's social support network.

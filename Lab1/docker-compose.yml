@@ -1,41 +1,77 @@
 version: "3.8"
 
 networks:
-    world-company-network:
-      ipam:
-        config:
-          - subnet: 172.18.0.0/16
-
+  goldenpot_lan:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/26
 
 services:
-  wordpress:
-      build:
-          context: wordpress
-      restart: always
-      ports:
-        - 80:80
-      environment:
-        WORDPRESS_DB_HOST: db
-        WORDPRESS_DB_USER: exampleuser
-        WORDPRESS_DB_PASSWORD: examplepass
-        WORDPRESS_DB_NAME: exampledb
-      networks:
-        world-company-network:
-          ipv4_address: 172.18.0.2
-
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
+  website:
+    build:
+        context: ./website
+    ports:
+      - 80:80
     networks:
-        world-company-network:
-          ipv4_address: 172.18.0.3
+      goldenpot_lan:
+        ipv4_address: 172.18.0.10
+    depends_on:
+      setup_test:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -O /dev/null http://localhost || exit 1"]
+      timeout: 3s
+      retries: 3
+      interval: 5s
 
-volumes:
+  setup_test:
+    build:
+      context: ./setup
+    networks:
+      goldenpot_lan:
+        ipv4_address: 172.18.0.3
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost/healthz"]
+      timeout: 3s
+      retries: 3
+      interval: 5s
+
+  goldenpot:
+    build:
+      context: ./users
+      args:
+        - INTERN_NAME
+        - ROOT_PASSWD
+        - USER_NAME
+        - INTERN_PASSWD
+        - USER_PASSWD
+    env_file:
+      - ./users/creds.env
+    ports:
+      - 22:22
+    networks:
+      goldenpot_lan:
+        ipv4_address: 172.18.0.11
+    depends_on:
+      db:
+        condition: service_healthy
+  
   db:
+    build:
+      context: ./db
+      args:
+        - MYSQL_ROOT_PASSWORD
+        - MYSQL_USER
+        - MYSQL_PASSWORD
+    expose:
+      - 3306
+    env_file:
+      - ./db/creds.env
+    networks:
+      goldenpot_lan:
+        ipv4_address: 172.18.0.2
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 3
+      interval: 10s

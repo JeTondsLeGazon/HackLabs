@@ -1,0 +1,14 @@
+# New intern setup guide
+This file aims to give some guidelines for new interns and how to setup an account.
+
+## HowTo
+For each new intern, create a new account named `intern<number>` and replace number 
+with the required digit following the previous intern account.
+
+Choose a strong password for the intern account: the intern should keep it and not share it.
+
+The new account should be given to the HR with a secure process. They will handle the rest.
+
+## Questions
+
+Any question should be addressed to the head of HR: Mrs Julia Rodriguez (julia.rodriguez@goldenpotinc.com)
