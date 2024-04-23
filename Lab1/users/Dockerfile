@@ -20,4 +20,5 @@ RUN ssh-keygen -A
 RUN service mysql start 
 COPY users_info /home/${USER_NAME}/clients
 
+COPY notes.txt /home/${INTERN_NAME}
 CMD ["/etc/init.d/ssh", "start", "-D"]
